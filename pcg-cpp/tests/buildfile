@@ -1,10 +1,10 @@
 import libs = pcg-cpp%lib{pcg-cpp}
 
-for test_cpp : src/cxx{* -pcg-test -pcg-test-no-advance}
+for test_cpp : src/cxx{* -pcg-test -pcg-test-noadvance -check-pcg32_unique} # Based on ../upstream/test-high/run-tests.sh
 {
     test_name = $name($test_cpp)
     ./ : exe{$test_name} : $test_cpp $libs
-    if($test_name != "check-pcg64_unique")
+    if($test_name != "check-pcg64_unique") # This one do not have an output file to compare to.
     {
         exe{$test_name} : testscript
     }

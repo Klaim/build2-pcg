@@ -1,7 +1,7 @@
 intf_libs = # Interface dependencies.
 #import xxxx_libs += libhello%lib{hello}
 
-lib{pcg-cpp}: include/{hxx ixx txx}{** -version} hxx{version} $intf_libs
+lib{pcg-cpp}: include/{hxx ixx txx}{**} hxx{version} $intf_libs
 
 # Include the generated version header into the distribution (so that we don't
 # pick up an installed one) and don't remove it when cleaning in src (so that
@@ -15,13 +15,13 @@ hxx{version}: in{version} $src_root/manifest
 
 # Build options.
 #
-cxx.poptions =+ "-I$out_root/include" "-I$src_root/include" "-I$out_root" "-I$src_root"
+cxx.poptions =+ "-I$out_base/include" "-I$src_base/include" "-I$out_root" "-I$src_root"
 
 # Export options.
 #
 lib{pcg-cpp}:
 {
-  cxx.export.poptions = "-I$out_root/include" "-I$src_root/include" "-I$out_root" "-I$src_root"
+  cxx.export.poptions = "-I$out_base/include" "-I$src_base/include" "-I$out_root" "-I$src_root"
   cxx.export.libs = $intf_libs
 }
 
@@ -30,6 +30,6 @@ lib{pcg-cpp}:
 #
 {hxx ixx txx}{*}:
 {
-  install         = include/pcg-cpp/
+  install         = include/
   install.subdirs = true
 }

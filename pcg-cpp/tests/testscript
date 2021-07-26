@@ -1,4 +1,9 @@
 
-# Compaare test output to expected output
-$* >= $src_base/src/expected/$name($*)
+expected_dir = $src_base/src/expected/
++ln -s $expected_dir $~/expected
+
+: compare-with-expected-output
+$* >= $name($*).out == 0;
+diff -u $name($*).out ../expected/$name($*).out
+
 
