@@ -1,0 +1,6 @@
+$out_root/
+{
+  include pcg-cpp/
+}
+
+export $out_root/pcg-cpp/$import.target
